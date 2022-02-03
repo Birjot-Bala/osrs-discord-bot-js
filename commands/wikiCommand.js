@@ -1,5 +1,5 @@
 const { SlashCommand, CommandOptionType } = require('slash-create');
-import { WIKI_URL } from '../constants'
+import { WIKI_URL } from './constants'
 
 module.exports = class WikiCommand extends SlashCommand {
   constructor(creator) {
