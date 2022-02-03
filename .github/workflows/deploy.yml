@@ -1,0 +1,33 @@
+name: deploy to lambda
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy_lambda:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.5.1
+        with:
+          node-version: '14'
+          
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws_region: us-east-1
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Create zip file
+        run: zip -r deploy . -x *.md .gitignore LICENSE
+        
+      - name: Upload Zip to Lambda
+        run: aws lambda update-function-code --function-name=osrsDiscordBotJs --zip-file=fileb://deploy.zip
