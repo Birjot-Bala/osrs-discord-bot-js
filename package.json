@@ -1,0 +1,27 @@
+{
+  "name": "osrs-discord-bot",
+  "version": "1.0.0",
+  "description": "OSRS Discord Bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "devStart": "node -r dotenv/config src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Birjot-Bala/osrs-discord-bot-js.git"
+  },
+  "author": "Birjot Bala",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Birjot-Bala/osrs-discord-bot-js/issues"
+  },
+  "homepage": "https://github.com/Birjot-Bala/osrs-discord-bot-js#readme",
+  "dependencies": {
+    "slash-create": "^5.0.3"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0"
+  }
+}
