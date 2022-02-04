@@ -27,7 +27,7 @@ jobs:
         run: npm install
         
       - name: Create zip file
-        run: zip -r deploy . -x *.md LICENSE ".*"
+        run: zip -r deploy . -x *.md LICENSE '.*' 'scripts/'
         
       - name: Upload Zip to Lambda
         run: aws lambda update-function-code --function-name=osrsDiscordBotJs --zip-file=fileb://deploy.zip
