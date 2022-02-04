@@ -3,7 +3,11 @@ name: deploy to lambda
 on:
   push:
     branches: [ main ]
-    paths-ignore: - '.**' 'scripts/**' 'LICENSE' '*.md'
+    paths-ignore: 
+      - '.**' 
+      - 'scripts/**' 
+      - 'LICENSE' 
+      - '*.md'
 
 jobs:
   deploy_lambda:

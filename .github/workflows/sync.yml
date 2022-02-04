@@ -3,7 +3,8 @@ name: sync commands
 on:
   push:
     branches: [ main ]
-    paths: - 'commands/**'
+    paths: 
+      - 'commands/**'
   workflow_dispatch:
 
 jobs:
