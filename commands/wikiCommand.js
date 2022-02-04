@@ -10,7 +10,8 @@ module.exports = class WikiCommand extends SlashCommand {
         type: CommandOptionType.STRING,
         name: 'search',
         description: 'What do you want to search the wiki for?'
-      }]
+      }],
+      guildIDs: ['656445531396112394']
     });
 
     this.filePath = __filename;
