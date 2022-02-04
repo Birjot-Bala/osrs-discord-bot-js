@@ -9,7 +9,8 @@ module.exports = class HelloCommand extends SlashCommand {
         type: CommandOptionType.STRING,
         name: 'food',
         description: 'What food do you like?'
-      }]
+      }],
+      guildIDs: ['656445531396112394']
     });
 
     this.filePath = __filename;
