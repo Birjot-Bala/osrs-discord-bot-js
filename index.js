@@ -8,8 +8,5 @@ const creator = new SlashCreator({
 });
 
 creator
-    // The first argument is required, the second argument is the name or "target" of the export.
-    // It defaults to 'interactions', so it would not be strictly necessary here.
     .withServer(new AWSLambdaServer(module.exports, 'interactions'))
     .registerCommandsIn(path.join(__dirname, 'commands'))
-    .syncCommands();
