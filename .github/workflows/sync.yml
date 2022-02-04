@@ -1,0 +1,25 @@
+name: sync commands
+
+on:
+  push:
+    branches: [ main ]
+    paths: -'commands/**'
+  workflow_dispatch:
+
+jobs:
+  sync_commands:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-nopde@v2.5.1
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Run sync script
+        run: node scripts/updateCommands.js
