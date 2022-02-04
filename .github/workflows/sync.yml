@@ -24,3 +24,7 @@ jobs:
       
       - name: Run sync script
         run: node scripts/updateCommands.js
+        env:
+          DISCORD_APP_ID: ${{ secrets.DISCORD_APP_ID }}
+          DISCORD_PUBLIC_KEY: ${{ secrets.DISCORD_PUBLIC_KEY }}
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
