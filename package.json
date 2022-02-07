@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Birjot-Bala/osrs-discord-bot-js#readme",
   "dependencies": {
+    "axios": "^0.25.0",
     "slash-create": "^5.0.3"
   },
   "devDependencies": {
