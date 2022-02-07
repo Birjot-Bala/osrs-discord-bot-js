@@ -1,3 +1,4 @@
+const axios = require('axios');
 const { SlashCommand, CommandOptionType } = require('slash-create');
 const { WIKI_URL } = require('../constants.js');
 
@@ -18,6 +19,23 @@ module.exports = class WikiCommand extends SlashCommand {
   }
 
   async run(ctx) {
-    return ctx.options.search ? `Searching for ${ctx.options.search} in ${WIKI_URL}` : `Hello, ${ctx.user.username}!`;
+    const wikiClient = axios.create({
+      baseURL: WIKI_URL,
+      timeout: 2000
+    });
+    wikiClient.get('/api.php', {
+        params: {
+        action: 'opensearch',
+        search: ctx.options.search,
+        format: 'json'
+      }})
+      .then(resp => {
+        console.log(resp.config.baseURL, resp.config.url, resp.config.params);
+        return `Here's what I found on the wiki for '${ctx.options.search}':\n${resp.data[3].map(e => `${e}`).join(`\n`)}`
+      })
+      .catch(err => {
+        console.error(err);
+        return "Oh no... looks like somethings not working with the /wiki command."
+    });
   }
 }
