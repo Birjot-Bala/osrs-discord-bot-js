@@ -32,7 +32,7 @@ module.exports = class WikiCommand extends SlashCommand {
       }})
       .then(resp => {
         console.log(resp.config.baseURL, resp.config.url, resp.config.params);
-        return `Here's what I found on the wiki for '${ctx.options.search}':${resp.data[1].map((e, i) => `<[${e}]>(${resp.data[3][i]})`).join('\n')})`
+        return `Here's what I found on the wiki for '${ctx.options.search}':\n${resp.data[1].map((e, i) => `[${e}](${resp.data[3][i]})`).join('\n')})`
       })
       .catch(err => {
         console.error(err);
