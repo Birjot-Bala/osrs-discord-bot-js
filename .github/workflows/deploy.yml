@@ -3,12 +3,8 @@ name: deploy to lambda
 on:
   push:
     branches: [ main ]
-    paths-ignore: 
-      - '.**' 
-      - 'scripts/**' 
-      - 'LICENSE' 
-      - '*.md'
-
+    paths: 
+      - "**/src/**"
 jobs:
   deploy_lambda:
     runs-on: ubuntu-latest
