@@ -23,7 +23,7 @@ jobs:
         run: npm install
       
       - name: Run sync script
-        run: node scripts/updateCommands.js
+        run: npm run updateCommands
         env:
           DISCORD_APP_ID: ${{ secrets.DISCORD_APP_ID }}
           DISCORD_PUBLIC_KEY: ${{ secrets.DISCORD_PUBLIC_KEY }}

@@ -9,5 +9,5 @@ const creator = new SlashCreator({
 });
 
 creator
-    .registerCommandsIn(path.join(__dirname, '../commands'))
+    .registerCommandsIn(path.join(__dirname, '../src/commands'))
     .syncCommands();

@@ -1,4 +1,5 @@
 const { SlashCommand, CommandOptionType } = require('slash-create');
+const { WIKI_URL } = require('../constants.js');
 
 module.exports = class WikiCommand extends SlashCommand {
   constructor(creator) {
@@ -17,6 +18,6 @@ module.exports = class WikiCommand extends SlashCommand {
   }
 
   async run(ctx) {
-    return ctx.options.search ? `Searching for ${ctx.options.search}` : `Hello, ${ctx.user.username}!`;
+    return ctx.options.search ? `Searching for ${ctx.options.search} in ${WIKI_URL}` : `Hello, ${ctx.user.username}!`;
   }
 }

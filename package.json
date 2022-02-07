@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node src/index.js",
     "devStart": "node -r dotenv/config src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "updateCommands": "node scripts/updateCommands.js",
+    "devUpdateCommands": "node -r dotenv/config scripts/updateCommands.js"
   },
   "repository": {
     "type": "git",
