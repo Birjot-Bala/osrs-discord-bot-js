@@ -23,7 +23,7 @@ module.exports = class WikiCommand extends SlashCommand {
       baseURL: WIKI_URL,
       timeout: 2000
     });
-    wikiClient.get('/api.php', {
+    return wikiClient.get('/api.php', {
         params: {
         action: 'opensearch',
         search: ctx.options.search,
