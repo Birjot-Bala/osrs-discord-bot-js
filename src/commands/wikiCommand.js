@@ -27,11 +27,13 @@ module.exports = class WikiCommand extends SlashCommand {
         params: {
         action: 'opensearch',
         search: ctx.options.search,
-        format: 'json'
+        format: 'json',
+        limit: 3
       }})
       .then(resp => {
         console.log(resp.config.baseURL, resp.config.url, resp.config.params);
-        return `Here's what I found on the wiki for '${ctx.options.search}':\n${resp.data[3].map(e => `${e}`).join(`\n`)}`
+        return `Here's what I found on the wiki for '${ctx.options.search}':
+        ${resp.data[1].map((e, i) => `[${e}](${resp.data[3][i]})`).join('\n')})`
       })
       .catch(err => {
         console.error(err);
