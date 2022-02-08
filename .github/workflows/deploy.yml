@@ -6,7 +6,7 @@ on:
     paths: 
       - "**/src/**"
 
-    workflow_dispatch:
+  workflow_dispatch:
     
 jobs:
   deploy_lambda:
