@@ -1,6 +1,6 @@
 const axios = require('axios');
 const { SlashCommand, CommandOptionType } = require('slash-create');
-const { WIKI_URL } = require('../constants.js');
+const { WIKI_URL, USER_AGENT } = require('../constants.js');
 
 module.exports = class WikiCommand extends SlashCommand {
   constructor(creator) {
@@ -24,6 +24,9 @@ module.exports = class WikiCommand extends SlashCommand {
       timeout: 2000
     });
     return wikiClient.get('/api.php', {
+        headers: {
+          'User-Agent': USER_AGENT
+        },
         params: {
           action: 'query',
           generator: 'prefixsearch',
@@ -32,9 +35,10 @@ module.exports = class WikiCommand extends SlashCommand {
           prop: 'info',
           inprop: 'url',
           format: 'json',
-      }})
+        }
+      })
       .then(resp => {
-        console.log(resp.config.baseURL, resp.config.url, resp.config.params);
+        console.log(resp.config.baseURL, resp.config.url, resp.config.headers, resp.config.params);
         const pages = resp.data.query.pages;
         return `Here's what I found on the wiki for '${ctx.options.search}':\n${Object.keys(pages).map((pg) => `[${pages[pg].title}](<${pages[pg].fullurl}>)`).join('\n')}`
       })
