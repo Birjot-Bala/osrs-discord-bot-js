@@ -40,7 +40,7 @@ module.exports = class WikiCommand extends SlashCommand {
       })
       .catch(err => {
         console.error(err);
-        return "Oh no... looks like somethings not working with the /wiki command."
+        return "Oh no... looks like something went wrong with the /wiki command."
     });
   }
 }
