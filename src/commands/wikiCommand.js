@@ -25,14 +25,18 @@ module.exports = class WikiCommand extends SlashCommand {
     });
     return wikiClient.get('/api.php', {
         params: {
-        action: 'opensearch',
-        search: ctx.options.search,
-        format: 'json',
-        limit: 3
+          action: 'query',
+          generator: 'prefixsearch',
+          gpssearch: ctx.options.search,
+          gpslimit: 3,
+          prop: 'info',
+          inprop: 'url',
+          format: 'json',
       }})
       .then(resp => {
         console.log(resp.config.baseURL, resp.config.url, resp.config.params);
-        return `Here's what I found on the wiki for '${ctx.options.search}':\n${resp.data[1].map((e, i) => `[${e}](<${resp.data[3][i]}>)`).join('\n')}`
+        const pages = resp.data.query.pages;
+        return `Here's what I found on the wiki for '${ctx.options.search}':\n${Object.keys(pages).map((pg) => `[${pages[pg].title}](<${pages[pg].fullurl}>)`).join('\n')}`
       })
       .catch(err => {
         console.error(err);
