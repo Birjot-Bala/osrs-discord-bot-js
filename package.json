@@ -8,7 +8,8 @@
     "devStart": "node -r dotenv/config src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "updateCommands": "node scripts/updateCommands.js",
-    "devUpdateCommands": "node -r dotenv/config scripts/updateCommands.js"
+    "devUpdateCommands": "node -r dotenv/config scripts/updateCommands.js",
+    "scrapeExchangeItems": "node scripts/scrapeExchangeItems.js"
   },
   "repository": {
     "type": "git",
