@@ -21,12 +21,10 @@ module.exports = class WikiCommand extends SlashCommand {
   async run(ctx) {
     const wikiClient = axios.create({
       baseURL: WIKI_URL,
-      timeout: 2000
+      timeout: 2000,
+      headers: {'User-Agent': USER_AGENT}
     });
     return wikiClient.get('/api.php', {
-        headers: {
-          'User-Agent': USER_AGENT
-        },
         params: {
           action: 'query',
           generator: 'prefixsearch',
