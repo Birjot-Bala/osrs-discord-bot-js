@@ -9,6 +9,7 @@ module.exports = class WikiCommand extends SlashCommand {
       description: 'Pulls up OSRS wiki link.',
       options: [{
         type: CommandOptionType.STRING,
+        required: true,
         name: 'search',
         description: 'What do you want to search the wiki for?'
       }],
