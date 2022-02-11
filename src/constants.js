@@ -5,6 +5,6 @@ const USER_AGENT = 'osrs-discord-bot-js (https://github.com/Birjot-Bala/osrs-dis
 const WIKI_URL = 'https://oldschool.runescape.wiki'
 
 module.exports = {
-    WIKI_URL,
-    USER_AGENT
+  WIKI_URL,
+  USER_AGENT
 }
