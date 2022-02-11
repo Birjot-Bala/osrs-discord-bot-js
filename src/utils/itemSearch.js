@@ -6,7 +6,6 @@ const searchForID = (userItem, num = 3) => {
   const re =/[ \'\,\-\(\)]/g
   const cleanUp = (str) => str.toLowerCase().replace(re,  '');
   const cleanUserItem = cleanUp(userItem);
-  console.log(cleanUserItem);
 
   const results = [];
 
