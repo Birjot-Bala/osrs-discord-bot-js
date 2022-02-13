@@ -23,7 +23,7 @@ module.exports = class HelloCommand extends SlashCommand {
     if (matches.length) {
       return `Here are the item IDs I found for '${ctx.options.item}':\n\`\`\`${matches.map(([itemName, itemID]) => `${itemName.padEnd(40," ")}${itemID}`).join('\n')}\`\`\``;
     } else {
-      return `Hmm... I couldn't find any item IDs for '${ctx.options.item}`
+      return `Hmm... I couldn't find any item IDs for '${ctx.options.item}'`
     }
   }
 }
