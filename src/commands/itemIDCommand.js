@@ -1,5 +1,5 @@
 const { SlashCommand, CommandOptionType } = require('slash-create');
-const { searchForID } = require('../utils/itemSearch');
+const { searchByName } = require('../utils/itemSearch');
 
 module.exports = class HelloCommand extends SlashCommand {
   constructor(creator) {
@@ -19,7 +19,7 @@ module.exports = class HelloCommand extends SlashCommand {
   }
 
   async run(ctx) {
-    const matches = searchForID(ctx.options.item);
+    const matches = searchByName(ctx.options.item);
     if (matches.length) {
       return `Here are the item IDs I found for '${ctx.options.item}':\n\`\`\`${matches.map(([itemName, itemID]) => `${itemName.padEnd(40," ")}${itemID}`).join('\n')}\`\`\``;
     } else {

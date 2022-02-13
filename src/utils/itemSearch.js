@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const tradeableItems = JSON.parse(fs.readFileSync('./data/tradeable_items.json'));
 
-const searchForID = (userItem, num = 3) => {
+const searchByName = (userItem, num = 3) => {
   const re =/[ \'\,\-\(\)]/g
   const cleanUp = (str) => str.toLowerCase().replace(re,  '');
   const cleanUserItem = cleanUp(userItem);
@@ -20,6 +20,18 @@ const searchForID = (userItem, num = 3) => {
   return results;
 }
 
+const searchByID = (userItemID) => {
+  const results = [];
+
+  for (const [itemName, itemID] of Object.entries(tradeableItems)) {
+    if (userItemID == itemID) {
+      results.push([itemName, itemID])
+      break;
+    }
+  }
+}
+
 module.exports = {
-  searchForID
+  searchByName,
+  searchByID
 }
