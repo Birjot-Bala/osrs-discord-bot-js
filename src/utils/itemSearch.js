@@ -21,12 +21,10 @@ const searchByName = (userItem, num = 3) => {
 }
 
 const searchByID = (userItemID) => {
-  const results = [];
 
   for (const [itemName, itemID] of Object.entries(tradeableItems)) {
     if (userItemID == itemID) {
-      results.push([itemName, itemID])
-      break;
+      return [itemName, itemID];
     }
   }
 }
