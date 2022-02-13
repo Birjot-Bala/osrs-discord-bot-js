@@ -1,3 +1,4 @@
+const axios = require('axios');
 const { SlashCommand, CommandOptionType } = require('slash-create');
 const { searchByID } = require('../utils/itemSearch');
 const { PRICES_URL, USER_AGENT } = require('../constants');
