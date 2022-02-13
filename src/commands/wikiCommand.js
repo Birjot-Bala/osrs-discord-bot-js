@@ -37,7 +37,7 @@ module.exports = class WikiCommand extends SlashCommand {
         }
       })
       .then(resp => {
-        console.log(resp.config.baseURL, resp.config.url, resp.config.headers, resp.config.params);
+        console.log(`${resp.status} ${resp.statusText} ${resp.config.baseURL}${resp.config.url}\n${resp.config.headers}\n${resp.config.params}`);
         const pages = resp.data.query.pages;
         return `Here's what I found on the wiki for '${ctx.options.search}':\n${Object.keys(pages).map((pg) => `[${pages[pg].title}](<${pages[pg].fullurl}>)`).join('\n')}`
       })
