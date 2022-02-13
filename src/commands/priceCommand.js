@@ -19,7 +19,6 @@ module.exports = class HelloCommand extends SlashCommand {
   }
 
   async run(ctx) {
-
     const userItemName = searchByID(ctx.options.item);
     
     const pricesClient = axios.create({
@@ -28,14 +27,15 @@ module.exports = class HelloCommand extends SlashCommand {
       headers: {'User-Agent': USER_AGENT}
     });
 
-    return prices.get('/api/v1/osrs/latest', {
+    return pricesClient.get('/api/v1/osrs/latest', {
       params: {
         id: ctx.options.item
       }
     })
     .then(resp => {
       console.log(`${resp.status} ${resp.statusText} ${resp.config.baseURL}${resp.config.url}\n${JSON.stringify(resp.config.headers)}\n${JSON.stringify(resp.config.params)}`);
-      return `Here are the latest prices for '${userItemName[0]}':\n\`\`\`${'High'.padEnd(10,'.')}${resp.data.data[id]['high']}\n${'Low'.padEnd(10, '.')}${resp.data.data[id]['low']}\`\`\``    })
+      return `Here are the latest prices for '${userItemName[0]}':\n\`\`\`${'High'.padEnd(10,'.')}${resp.data.data[id]['high']}\n${'Low'.padEnd(10, '.')}${resp.data.data[id]['low']}\`\`\``}
+      )
     .catch(err => {
       console.error(err);
       return 'Oh no... looks like something went wrong with the /price command.'
