@@ -20,7 +20,11 @@ module.exports = class HelloCommand extends SlashCommand {
   }
 
   async run(ctx) {
-    const userItemName = searchByID(ctx.options.item);
+    const itemMatch = searchByID(ctx.options.item);
+
+    if (!itemMatch.length) {
+      return `Hmm... I couldn't find any tradeable items with an ID of ${ctx.options.item}`
+    }
     
     const pricesClient = axios.create({
       baseURL: PRICES_URL,
