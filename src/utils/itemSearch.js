@@ -27,6 +27,8 @@ const searchByID = (userItemID) => {
       return [itemName, itemID];
     }
   }
+
+  return [];
 }
 
 module.exports = {
