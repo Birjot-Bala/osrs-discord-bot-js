@@ -39,7 +39,7 @@ module.exports = class HelloCommand extends SlashCommand {
     })
     .then(resp => {
       console.log(`${resp.status} ${resp.statusText} ${resp.config.baseURL}${resp.config.url}\n${JSON.stringify(resp.config.headers, null, 2)}\n${JSON.stringify(resp.config.params, null, 2)}`);
-      return `Here are the latest prices for '${userItemName[0]}':\n\`\`\`\n${'High'.padEnd(10,' ')}${resp.data.data[ctx.options.item]['high']}\n${'Low'.padEnd(10, ' ')}${resp.data.data[ctx.options.item]['low']}\`\`\``}
+      return `Here are the latest prices for '${itemMatch[0]}':\n\`\`\`\n${'High'.padEnd(10,' ')}${resp.data.data[ctx.options.item]['high']}\n${'Low'.padEnd(10, ' ')}${resp.data.data[ctx.options.item]['low']}\`\`\``}
       )
     .catch(err => {
       console.error(err);
