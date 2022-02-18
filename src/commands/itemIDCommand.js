@@ -11,8 +11,7 @@ module.exports = class HelloCommand extends SlashCommand {
         required: true,
         name: 'item',
         description: 'What item to search the ID for?'
-      }],
-      guildIDs: ['656445531396112394']
+      }]
     });
 
     this.filePath = __filename;

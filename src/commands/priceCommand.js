@@ -10,10 +10,10 @@ module.exports = class HelloCommand extends SlashCommand {
       description: 'Retrieves the latest price for an item.',
       options: [{
         type: CommandOptionType.STRING,
+        required: true,
         name: 'item',
         description: 'What is the item ID?'
-      }],
-      guildIDs: ['656445531396112394']
+      }]
     });
 
     this.filePath = __filename;
