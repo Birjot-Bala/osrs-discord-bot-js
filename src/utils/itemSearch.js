@@ -3,7 +3,7 @@ const fs = require('fs');
 const tradeableItems = JSON.parse(fs.readFileSync('./data/tradeable_items.json'));
 
 const searchByName = (userItem, num = 3) => {
-  const re =/[ \'\,\-\(\)]/g
+  const re =/[ ',\-()]/g
   const cleanUp = (str) => str.toLowerCase().replace(re,  '');
   const cleanUserItem = cleanUp(userItem);
 
