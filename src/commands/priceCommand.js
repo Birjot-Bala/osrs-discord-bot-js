@@ -1,7 +1,6 @@
-const axios = require('axios');
 const { SlashCommand, CommandOptionType } = require('slash-create');
 const { searchByID } = require('../utils/itemSearch');
-const { PRICES_URL, USER_AGENT } = require('../constants');
+const { getPrice } = require('../handlers/priceHandler.js');
 
 module.exports = class HelloCommand extends SlashCommand {
   constructor(creator) {
@@ -25,25 +24,14 @@ module.exports = class HelloCommand extends SlashCommand {
     if (!itemMatch.length) {
       return `Hmm... I couldn't find any tradeable items with an ID of ${ctx.options.item}`
     }
-    
-    const pricesClient = axios.create({
-      baseURL: PRICES_URL,
-      timeout: 2000,
-      headers: {'User-Agent': USER_AGENT}
-    });
 
-    return pricesClient.get('/api/v1/osrs/latest', {
-      params: {
-        id: ctx.options.item
-      }
-    })
-    .then(resp => {
-      console.log(`${resp.status} ${resp.statusText} ${resp.config.baseURL}${resp.config.url}\n${JSON.stringify(resp.config.headers, null, 2)}\n${JSON.stringify(resp.config.params, null, 2)}`);
-      return `Here are the latest prices for '${itemMatch[0]}':\n\`\`\`\n${'High'.padEnd(10,' ')}${resp.data.data[ctx.options.item]['high']}\n${'Low'.padEnd(10, ' ')}${resp.data.data[ctx.options.item]['low']}\`\`\``}
-      )
-    .catch(err => {
-      console.error(err);
-      return 'Oh no... looks like something went wrong with the /price command.'
-    });
+    return getPrice(ctx.options.item)
+      .then(prices => {
+        return `Here are the latest prices for '${itemMatch[0]}':\n\`\`\`\n${'High'.padEnd(10,' ')}${prices['high']}gp\n${'Low'.padEnd(10, ' ')}${prices['low']}gp\`\`\``
+      })
+      .catch(err => {
+        console.error(err);
+        return 'Oh no... looks like something went wrong with the /price command.'
+      });
   }
 }
