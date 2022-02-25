@@ -9,7 +9,7 @@ const chartClient = axios.create({
 
 async function getTimeseriesChart(highPrices, lowPrices) {
   return chartClient.post('/chart/create', {
-    backgroundColor: "transparent",
+    backgroundColor: "rgba(255, 255, 255, 1)",
     width: 500,
     height: 300,
     format: "png",
