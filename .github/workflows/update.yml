@@ -28,5 +28,5 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add data/tradeable_items.json
-          git commit -m "`date` update"
+          git commit -m "updated"
           git push
