@@ -52,7 +52,7 @@ async function getTimeseriesChart(highPrices, lowPrices) {
         }
       }
     }
-  })
+  }, { responseType: 'arraybuffer' })
   .then(resp => {
     console.log(`${resp.status} ${resp.statusText} ${resp.config.baseURL}${resp.config.url}\n${JSON.stringify(resp.config.headers, null, 2)}`);
     return {
