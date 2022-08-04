@@ -35,6 +35,9 @@ module.exports = class HelloCommand extends SlashCommand {
     .then(({ highPrices, lowPrices }) => {
       return getTimeseriesChart(highPrices, lowPrices);
     })
+    .then(message => {
+      return message;
+    })
     .catch(err => {
       console.error(err);
     });
