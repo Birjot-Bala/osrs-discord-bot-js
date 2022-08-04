@@ -1,6 +1,6 @@
 const axios = require('axios');
 const { QUICKCHART_URL, USER_AGENT } = require('../constants.js');
-const { Buffer } = require('node:buffer')
+const { Buffer } = require('node:buffer');
 
 const chartClient = axios.create({
   baseURL: QUICKCHART_URL,
@@ -55,7 +55,12 @@ async function getTimeseriesChart(highPrices, lowPrices) {
   }, {responseType: 'arraybuffer'})
   .then(resp => {
     console.log(`${resp.status} ${resp.statusText} ${resp.config.baseURL}${resp.config.url}\n${JSON.stringify(resp.config.headers, null, 2)}`);
-    return Buffer.from(resp.data);
+    return {
+      file: {
+        name: "chart.png",
+        file: Buffer.from(resp.data)
+      }
+    }
   })
 }
 
