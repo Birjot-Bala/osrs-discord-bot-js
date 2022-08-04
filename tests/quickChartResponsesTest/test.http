@@ -1,0 +1,48 @@
+POST https://quickchart.io/chart
+Content-Type: application/json
+
+{
+    "backgroundColor": "rgba(255, 255, 255, 1)",
+    "width": 500,
+    "height": 300,
+    "format": "png",
+    "chart": {
+      "type": "scatter",
+      "data": {
+        "datasets": [{
+          "label": "High Prices",
+          "data": [{"x":1, "y": 100},{"x":2,"y":110}],
+          "showLine": true,
+          "fill": false,
+          "pointRadius": 0
+        }, {
+          "label": "Low Prices",
+          "data": [{"x":1, "y": 90},{"x":2,"y":105}],
+          "showLine": true,
+          "fill": false,
+          "pointRadius": 0
+        }]
+      },
+      "options": {
+        "scales": {
+          "xAxes": [{
+            "type": "time",
+            "position": "bottom",
+            "scaleLabel": {
+              "display": true,
+              "labelString": "Timestamp"
+            }
+          }],
+          "yAxes": [{
+            "display": true,
+            "beginAtZero": true,
+            "scaleLabel": {
+              "display": true,
+              "labelString": "GP"
+            }
+          }]
+        }
+      }
+    }
+}
+
