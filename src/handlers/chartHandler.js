@@ -56,7 +56,6 @@ async function getTimeseriesChart(highPrices, lowPrices) {
     console.log(`${resp.status} ${resp.statusText} ${resp.config.baseURL}${resp.config.url}\n${JSON.stringify(resp.config.headers, null, 2)}`);
     return {
       content: "Test message",
-      embeds: [],
       file: {
         name: "chart.png",
         file: resp.data
