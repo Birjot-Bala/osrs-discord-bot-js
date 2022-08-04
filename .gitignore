@@ -105,3 +105,6 @@ dist
 
 # Local test directory
 local-tests/
+
+# VSCode files
+.vscode/
