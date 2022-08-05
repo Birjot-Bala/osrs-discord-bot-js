@@ -37,7 +37,7 @@ module.exports = class HelloCommand extends SlashCommand {
     const chart = await getTimeseriesChart(highPrices, lowPrices);
 
     await ctx.send({
-      content: `Item: ${item.name} (${item.id})`,
+      content: `${item.name} (ID: ${item.id})`,
       file: {
         name: "chart.png",
         file: chart
