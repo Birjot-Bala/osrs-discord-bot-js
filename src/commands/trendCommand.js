@@ -33,8 +33,6 @@ module.exports = class HelloCommand extends SlashCommand {
   async run(ctx) {
     const { highPrices, lowPrices } = await getTimeseries(ctx.options.item, ctx.options.timestep);
     const chartMessage = await getTimeseriesChart(highPrices, lowPrices);
-    console.log(chartMessage);
-    await ctx.defer();
     await ctx.send(chartMessage);
   }
 }
