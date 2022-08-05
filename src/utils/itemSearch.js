@@ -24,7 +24,7 @@ const searchByID = (userItemID) => {
 
   for (const [itemName, itemID] of Object.entries(tradeableItems)) {
     if (userItemID == itemID) {
-      return [itemName, itemID];
+      return {name: itemName, id: itemID };
     }
   }
 

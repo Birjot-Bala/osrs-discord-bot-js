@@ -1,6 +1,7 @@
 const { SlashCommand, CommandOptionType } = require('slash-create');
 const { getTimeseries } = require('../handlers/priceHandler.js');
 const { getTimeseriesChart } = require('../handlers/chartHandler.js');
+const { searchByID } = require('../utils/itemSearch');
 
 module.exports = class HelloCommand extends SlashCommand {
   constructor(creator) {
@@ -31,8 +32,16 @@ module.exports = class HelloCommand extends SlashCommand {
   }
 
   async run(ctx) {
+    const item = searchByID(ctx.options.item);
     const { highPrices, lowPrices } = await getTimeseries(ctx.options.item, ctx.options.timestep);
-    const chartMessage = await getTimeseriesChart(highPrices, lowPrices);
-    await ctx.send(chartMessage);
+    const chart = await getTimeseriesChart(highPrices, lowPrices);
+
+    await ctx.send({
+      content: `Item: ${item.name} (${item.id})`,
+      file: {
+        name: "chart.png",
+        file: chart
+      }
+    });
   }
 }
