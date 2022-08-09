@@ -21,7 +21,7 @@ module.exports = class HelloCommand extends SlashCommand {
   async run(ctx) {
     const itemMatch = searchByID(ctx.options.item);
 
-    if (!itemMatch.length) {
+    if (!Object.keys(itemMatch).length) {
       return `Hmm... I couldn't find any tradeable items with an ID of ${ctx.options.item}`
     }
 

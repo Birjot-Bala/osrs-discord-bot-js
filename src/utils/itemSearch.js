@@ -28,7 +28,7 @@ const searchByID = (userItemID) => {
     }
   }
 
-  return [];
+  return {};
 }
 
 module.exports = {
