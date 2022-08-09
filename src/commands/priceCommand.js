@@ -27,7 +27,7 @@ module.exports = class HelloCommand extends SlashCommand {
 
     return getPrice(ctx.options.item)
       .then(prices => {
-        return `Here are the latest prices for '${itemMatch[0]}':\n\`\`\`\n${'High'.padEnd(10,' ')}${prices['high']}gp\n${'Low'.padEnd(10, ' ')}${prices['low']}gp\`\`\``
+        return `Here are the latest prices for '${itemMatch.name}':\n\`\`\`\n${'High'.padEnd(10,' ')}${prices['high']}gp\n${'Low'.padEnd(10, ' ')}${prices['low']}gp\`\`\``
       })
       .catch(err => {
         console.error(err);
