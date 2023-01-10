@@ -11,3 +11,6 @@ const creator = new SlashCreator({
 creator
   .registerCommandsIn(path.join(__dirname, '../src/commands'))
   .syncCommands();
+
+console.log('Synced the following commands:')
+creator.commands.forEach(cmd => console.log(cmd.commandName))
