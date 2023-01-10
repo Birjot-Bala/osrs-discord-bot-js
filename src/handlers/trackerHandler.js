@@ -1,4 +1,4 @@
-const axios = require('slash-create');
+const axios = require('axios');
 const { TRACKER_URL, USER_AGENT } = require('../constants.js')
 
 const trackerClient = axios.create({
