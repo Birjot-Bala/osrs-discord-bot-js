@@ -2,7 +2,7 @@ const { SlashCommand, CommandOptionType } = require('slash-create');
 const { searchByID } = require('../utils/itemSearch');
 const { getPrice } = require('../handlers/priceHandler.js');
 
-module.exports = class HelloCommand extends SlashCommand {
+module.exports = class PriceCommand extends SlashCommand {
   constructor(creator) {
     super(creator, {
       name: 'price',

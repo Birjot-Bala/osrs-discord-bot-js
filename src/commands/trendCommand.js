@@ -3,7 +3,7 @@ const { getTimeseries } = require('../handlers/priceHandler.js');
 const { getTimeseriesChart } = require('../handlers/chartHandler.js');
 const { searchByID } = require('../utils/itemSearch');
 
-module.exports = class HelloCommand extends SlashCommand {
+module.exports = class TrendCommand extends SlashCommand {
   constructor(creator) {
     super(creator, {
       name: 'trend',
