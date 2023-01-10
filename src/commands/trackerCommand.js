@@ -38,7 +38,7 @@ module.exports = class TrackerCommand extends SlashCommand {
   async run(ctx) {
     return getPlayerGains(ctx.options.username, ctx.options.period)
       .then(skills => {
-        return `${ctx.options.username} gains in the past ${ctx.options.period}:\n\`\`\`${Object.keys(skills).map((skill) => `${skill.metric.padEnd(10,' ')}${skill.experience.gained}`).join('\n')}\`\`\``
+        return `${ctx.options.username} gains in the past ${ctx.options.period}:\n\`\`\`${Object.keys(skills).map((skill) => `${skills[skill].metric.padEnd(15,' ')}${skills[skill].experience.gained}`).join('\n')}\`\`\``
       })
       .catch(err => {
         console.error(err);
