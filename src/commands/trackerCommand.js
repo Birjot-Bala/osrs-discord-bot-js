@@ -1,5 +1,5 @@
 const { SlashCommand, CommandOptionType } = require('slash-create');
-const { getPlayerGains } = require('../handlers/trackerHandler.js');
+const { getPlayerGains, updatePlayer } = require('../handlers/trackerHandler.js');
 
 module.exports = class TrackerCommand extends SlashCommand {
   constructor(creator) {
@@ -36,6 +36,7 @@ module.exports = class TrackerCommand extends SlashCommand {
   }
 
   async run(ctx) {
+    await updatePlayer(ctx.options.username) 
     return getPlayerGains(ctx.options.username, ctx.options.period)
       .then(skills => {
         return `${ctx.options.username} gains in the past ${ctx.options.period}:\n\`\`\`${Object.keys(skills).map((skill) => `${skills[skill].metric.padEnd(15,' ')}${skills[skill].experience.gained}`).join('\n')}\`\`\``

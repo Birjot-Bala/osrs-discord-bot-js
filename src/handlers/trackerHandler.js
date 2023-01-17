@@ -7,6 +7,10 @@ const trackerClient = axios.create({
     headers: {'User-Agent': USER_AGENT}
   });
 
+async function updatePlayer(username) {
+  return trackerClient.post(`/players/${username}`)
+}
+
 async function getPlayerGains(username, period) {
   return trackerClient.get(`/players/${username}/gained`, {
     params: {
@@ -19,5 +23,6 @@ async function getPlayerGains(username, period) {
 }
 
 module.exports = {
-  getPlayerGains
+  getPlayerGains,
+  updatePlayer
 }
