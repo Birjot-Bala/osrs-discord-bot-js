@@ -14,4 +14,4 @@ This bot was originally implemented using Python and did not take advantage of s
 - /itemid - Takes an item name, searches a list of tradeable items for matches and returns the top 3 matches
 - /price - Takes an item ID and returns the latest high and low prices from the [OSRS Wiki Prices API](https://oldschool.runescape.wiki/w/RuneScape:Real-time_Prices) 
 - /trend - Takes an item ID and timestep and returns a chart using [QuickChart](https://quickchart.io/) displaying the price timeseries for 300 timesteps
-
+- /tracker - Takes a username and time period and returns the XP gains using the [WiseOldMan](https://wiseoldman.net/) API
