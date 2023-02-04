@@ -1,5 +1,6 @@
 const axios = require('axios');
-const { TRACKER_URL, USER_AGENT } = require('../constants.js')
+const { TRACKER_URL, USER_AGENT, SQS_QUEUE_URL } = require('../constants.js');
+const { sendToQueue } = require('../messages/sendMessage');
 
 const trackerClient = axios.create({
     baseURL: TRACKER_URL,
@@ -22,7 +23,17 @@ async function getPlayerGains(username, period) {
   })
 }
 
+function sendTrackerMessageToQueue(ctx) {
+  const params = {
+    MessageBody: JSON.stringify(ctx),
+    QueueUrl: SQS_QUEUE_URL
+  }
+
+  sendToQueue(params)
+}
+
 module.exports = {
   getPlayerGains,
-  updatePlayer
+  updatePlayer,
+  sendTrackerMessageToQueue
 }

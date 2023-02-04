@@ -1,5 +1,5 @@
 const { SlashCommand, CommandOptionType } = require('slash-create');
-const { getPlayerGains, updatePlayer } = require('../handlers/trackerHandler.js');
+const { getPlayerGains, updatePlayer, sendTrackerMessageToQueue } = require('../handlers/trackerHandler.js');
 
 module.exports = class TrackerCommand extends SlashCommand {
   constructor(creator) {
@@ -36,6 +36,10 @@ module.exports = class TrackerCommand extends SlashCommand {
   }
 
   async run(ctx) {
+    ctx.defer();
+
+    sendTrackerMessageToQueue(ctx);
+
     await updatePlayer(ctx.options.username) 
     return getPlayerGains(ctx.options.username, ctx.options.period)
       .then(skills => {
