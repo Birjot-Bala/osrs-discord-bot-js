@@ -36,7 +36,7 @@ module.exports = class TrackerCommand extends SlashCommand {
   }
 
   async run(ctx) {
-    ctx.defer();
+    await ctx.defer();
 
     sendTrackerMessageToQueue(ctx);
 
