@@ -29,7 +29,7 @@ function sendTrackerMessageToQueue(ctx) {
     QueueUrl: SQS_QUEUE_URL
   }
 
-  sendToQueue(params)
+  return sendToQueue(params)
 }
 
 module.exports = {
