@@ -3,9 +3,9 @@ const { sqsClient } = require("./sqsClient.js")
 
 async function sendToQueue(params) {
     try {
-        const data = await sqsClient.send(new SendMessageCommand(JSON.stringify(params)));
+        const data = await sqsClient.send(new SendMessageCommand(params));
         console.log("Success, message sent. MessageID:", data.MessageId);
-        return data;
+        return data
     } catch (err) {
         console.log("Error", err);
     }
