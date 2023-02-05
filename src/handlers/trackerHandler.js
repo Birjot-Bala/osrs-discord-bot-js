@@ -27,14 +27,16 @@ function sendTrackerMessageToQueue(ctx) {
   try {
     console.log('Sending tracker message to queue for processing.')
     const params = {
-      MessageBody: {
-        InteractionToken: ctx.interactionToken,
-        CommandType: ctx.commandName 
+      MessageAttributes: {
+        CommandType: {
+          DataType: "String",
+          StringValue: ctx.commandName
+        }
       },
+      MessageBody: ctx.interactionToken,
       QueueUrl: SQS_QUEUE_URL
     }
-    console.log(params.MessageBody, params.QueueUrl, params)
-  
+    console.log(params);
     return sendToQueue(params);
   } catch (err) {
     console.log(err);
