@@ -24,6 +24,7 @@ async function getPlayerGains(username, period) {
 }
 
 function sendTrackerMessageToQueue(ctx) {
+  console.log('Sending tracker message to queue for processing.')
   const params = {
     MessageBody: JSON.stringify(ctx),
     QueueUrl: SQS_QUEUE_URL
