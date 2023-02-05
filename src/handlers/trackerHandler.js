@@ -33,6 +33,7 @@ function sendTrackerMessageToQueue(ctx) {
       },
       QueueUrl: SQS_QUEUE_URL
     }
+    console.log(params.MessageBody, params.QueueUrl, params)
   
     return sendToQueue(params);
   } catch (err) {
