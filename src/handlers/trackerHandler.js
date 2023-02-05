@@ -27,7 +27,10 @@ function sendTrackerMessageToQueue(ctx) {
   try {
     console.log('Sending tracker message to queue for processing.')
     const params = {
-      MessageBody: JSON.stringify(ctx),
+      MessageBody: {
+        InteractionToken: ctx.interactionToken,
+        CommandType: ctx.commandName 
+      },
       QueueUrl: SQS_QUEUE_URL
     }
   
@@ -35,11 +38,10 @@ function sendTrackerMessageToQueue(ctx) {
   } catch (err) {
     console.log(err);
   }
-
 }
 
 module.exports = {
   getPlayerGains,
   updatePlayer,
-  sendTrackerMessageToQueue
+  sendTrackerMessageToQueue,
 }

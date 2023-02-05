@@ -36,10 +36,9 @@ module.exports = class TrackerCommand extends SlashCommand {
   }
 
   async run(ctx) {
-    await sendTrackerMessageToQueue(ctx);
-
     await ctx.defer();
-
+    await sendTrackerMessageToQueue(ctx);
+    
     await updatePlayer(ctx.options.username) 
     return getPlayerGains(ctx.options.username, ctx.options.period)
       .then(skills => {
