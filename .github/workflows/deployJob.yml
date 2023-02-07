@@ -39,7 +39,7 @@ jobs:
         run: npm install
         
       - name: Create zip file
-        run: zip -r deployJob ./src/handlers/trackerHandler.js ./node_modules package.json ./src/jobs** ./src/constants.js
+        run: zip -r deployJob ./src/handlers/trackerHandler.js ./node_modules package.json ./src/jobs** ./src/constants.js ./src/messages
         
       - name: Upload Zip to Lambda
         run: aws lambda update-function-code --function-name=processMessagesForOsrsDiscordBot --zip-file=fileb://deployJob.zip
