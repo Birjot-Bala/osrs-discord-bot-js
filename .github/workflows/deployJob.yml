@@ -4,7 +4,9 @@ on:
   push:
     branches: [ main ]
     paths: 
-      - "!**/src/jobs**"
+      - "**/src/jobs**"
+      - "**/src/handlers**"
+      - "**/src/constants.js"
 
   workflow_dispatch:
     
