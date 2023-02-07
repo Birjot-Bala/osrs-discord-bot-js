@@ -33,7 +33,11 @@ function sendTrackerMessageToQueue(ctx) {
           StringValue: ctx.commandName
         }
       },
-      MessageBody: ctx.interactionToken,
+      MessageBody: JSON.stringify({ 
+        interactionToken: ctx.interactionToken,
+        username: ctx.options.username,
+        period: ctx.options.period
+      }),
       QueueUrl: SQS_QUEUE_URL
     }
     console.log(params);
