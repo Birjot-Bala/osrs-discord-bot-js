@@ -1,0 +1,45 @@
+name: deploy to jobs lambda
+
+on:
+  push:
+    branches: [ main ]
+    paths: 
+      - "!**/src/jobs**"
+
+  workflow_dispatch:
+    
+jobs:
+  deploy_lambda:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Add mask
+        run: |
+          echo "::add-mask::${{ secrets.AWS_ACCESS_KEY_ID }}"
+          echo "::add-mask::${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+          echo "::add-mask::${{ secrets.DISCORD_APP_ID }}"
+          echo "::add-mask::${{ secrets.DISCORD_BOT_TOKEN }}"
+          echo "::add-mask::${{ secrets.DISCORD_PUBLIC_KEY }}"
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          aws-region: us-east-1
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Create zip file
+        run: zip -r deployJob ./src/handlers/trackerHandler.js ./node_modules package.json ./src/jobs** ./src/constants.js
+        
+      - name: Upload Zip to Lambda
+        run: aws lambda update-function-code --function-name=processMessagesForOsrsDiscordBot --zip-file=fileb://deployJob.zip
