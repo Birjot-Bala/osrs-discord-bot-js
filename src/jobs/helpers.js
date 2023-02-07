@@ -15,11 +15,11 @@ async function editOriginal(interactionToken, content) {
 }
 
 async function updateTrackerMessage(body) {
-    await updatePlayer(body.options.username);
+    await updatePlayer(body.username);
 
-    const message = await getPlayerGains(body.options.username, body.options.period)
+    const message = await getPlayerGains(body.username, body.period)
       .then(skills => {
-        return `${body.options.username} gains in the past ${body.options.period}:\n\`\`\`${Object.keys(skills).map((skill) => `${skills[skill].metric.padEnd(15,' ')}${skills[skill].experience.gained}`).join('\n')}\`\`\``
+        return `${body.username} gains in the past ${body.period}:\n\`\`\`${Object.keys(skills).map((skill) => `${skills[skill].metric.padEnd(15,' ')}${skills[skill].experience.gained}`).join('\n')}\`\`\``
       })
       .catch(err => {
         console.error(err);
