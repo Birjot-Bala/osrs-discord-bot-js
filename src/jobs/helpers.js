@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { getPlayerGains, updatePlayer } = require('../handlers/trackerHandlers.js');
+const { getPlayerGains, updatePlayer } = require('../handlers/trackerHandler.js');
 const { DISCORD_URL, USER_AGENT } = require('../constants.js');
 
 const discordClient = axios.create({
