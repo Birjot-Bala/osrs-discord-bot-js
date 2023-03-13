@@ -15,7 +15,13 @@ async function editOriginal(interactionToken, content) {
 }
 
 async function updateTrackerMessage(body) {
-    await updatePlayer(body.username);
+    
+    try {
+      await updatePlayer(body.username);
+    } catch (err) {
+      console.error(err);
+      return await editOriginal(body.interactionToken, `Hmm... I am unable to find records for ${body.username}.`)
+    }
 
     const message = await getPlayerGains(body.username, body.period)
       .then(skills => {
