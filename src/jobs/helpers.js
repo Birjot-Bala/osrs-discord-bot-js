@@ -20,9 +20,11 @@ async function updateTrackerMessage(body) {
       await updatePlayer(body.username);
     } catch (err) {
       console.error(err);
-      if (err.response && err.response.status != 429) {
-        return await editOriginal(body.interactionToken, `Hmm... I am unable to find records for ${body.username}.`)
-      }
+      if (err.code === 'ECCONNABORTED') {
+        return await editOriginal(body.interactionToken, `Sorry! The request timed out.`);
+      } else if (!err.response || (err.response && err.response.status != 429)) {
+        return await editOriginal(body.interactionToken, `Hmm... I am unable to retrieve records for ${body.username}.`);
+      } 
     }
 
     const message = await getPlayerGains(body.username, body.period)
