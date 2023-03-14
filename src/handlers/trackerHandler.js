@@ -4,7 +4,7 @@ const { sendToQueue } = require('../messages/sendMessage');
 
 const trackerClient = axios.create({
     baseURL: TRACKER_URL,
-    timeout: 2000,
+    timeout: 3000,
     headers: {'User-Agent': USER_AGENT}
   });
 
