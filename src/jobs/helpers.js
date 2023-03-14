@@ -4,7 +4,7 @@ const { DISCORD_URL, USER_AGENT } = require('../constants.js');
 
 const discordClient = axios.create({
     baseURL: DISCORD_URL,
-    timeout: 5000, 
+    timeout: 3000, 
     headers: {'User-Agent': USER_AGENT}
 });
 
