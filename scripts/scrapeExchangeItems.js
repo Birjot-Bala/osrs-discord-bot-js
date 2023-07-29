@@ -3,18 +3,8 @@ const fs = require('fs');
 const { WIKI_URL, USER_AGENT } = require('../src/constants.js');
 
 
-
-const _GEIDParser = (data) => {
-  const objectResp = {}
-  const re = /\["(.*)"\] = (\d+)/g
-
-  const matchIter = data.matchAll(re);
-
-  for (const match of matchIter) {
-    objectResp[match[1]] = match[2];
-  }
-  
-  fs.writeFileSync('data/tradeable_items.json', JSON.stringify(objectResp, null, 2));
+const writeToFile = (data) => {
+  fs.writeFileSync('data/tradeable_items.json', JSON.stringify(data, null, 2))
 }
 
 const wikiClient = axios.create({
@@ -23,14 +13,15 @@ const wikiClient = axios.create({
   headers: {'User-Agent': USER_AGENT}
 });
 
-wikiClient.get('/w/Module:GEIDs/data', {
+wikiClient.get('/w/Module:GEIDs/data.json', {
   params: {
-    action: 'raw'
+    action: 'raw',
+    ctype: 'application_json'
   }
 })
 .then(resp => {
   console.log(resp.config.baseURL, resp.config.url, resp.config.headers, resp.config.params);
-  _GEIDParser(resp.data);
+  writeToFile(resp.data);
   console.log('Tradeable item list updated')
 })
 .catch(err => {
